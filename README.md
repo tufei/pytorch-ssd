@@ -9,7 +9,7 @@ wget -P models https://storage.googleapis.com/models-hao/mobilenet-v1-ssd-mp-0_6
 wget -P models https://storage.googleapis.com/models-hao/voc-model-labels.txt
 python run_ssd_example.py mb1-ssd models/mobilenet-v1-ssd-mp-0_675.pth models/voc-model-labels.txt
 ```
-After the successful execution, the TorchScript file, mobilenet-v1-ssd-mp-0_675.pt, will be in the current path.
+After the successful execution, the TorchScript file, mobilenet-v1-ssd-mp-0_675.pt, will be in the current path. The dumped TorchScript files can be used in the [demo application](https://github.com/tufei/torchscript-ssd).
 
 This repo implements [SSD (Single Shot MultiBox Detector)](https://arxiv.org/abs/1512.02325). The implementation is heavily influenced by the projects [ssd.pytorch](https://github.com/amdegroot/ssd.pytorch) and [Detectron](https://github.com/facebookresearch/Detectron).
 The design goal is modularity and extensibility.
