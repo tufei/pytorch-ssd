@@ -69,3 +69,14 @@ class Predictor:
         picked_box_probs[:, 2] *= width
         picked_box_probs[:, 3] *= height
         return picked_box_probs[:, :4], torch.tensor(picked_labels), picked_box_probs[:, 4]
+    
+    def trace(self, image, script_path=None):
+        image = self.transform(image)
+        images = image.unsqueeze(0)
+        images = images.to(self.device)
+        with torch.no_grad():
+            self.timer.start()
+            module = torch.jit.trace(self.net, images)
+            print("Trace time: ", self.timer.end())
+        if script_path is not None:
+            torch.jit.save(module, script_path)

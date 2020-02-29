@@ -5,6 +5,7 @@ from vision.ssd.squeezenet_ssd_lite import create_squeezenet_ssd_lite, create_sq
 from vision.ssd.mobilenet_v2_ssd_lite import create_mobilenetv2_ssd_lite, create_mobilenetv2_ssd_lite_predictor
 from vision.utils.misc import Timer
 import cv2
+import os
 import sys
 
 
@@ -49,6 +50,10 @@ else:
 orig_image = cv2.imread(image_path)
 image = cv2.cvtColor(orig_image, cv2.COLOR_BGR2RGB)
 boxes, labels, probs = predictor.predict(image, 10, 0.4)
+
+(script_base, script_ext) = os.path.splitext(os.path.basename(model_path))
+script_ext = ".pt"
+predictor.trace(image, script_base + script_ext)
 
 for i in range(boxes.size(0)):
     box = boxes[i, :]
