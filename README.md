@@ -1,5 +1,16 @@
 # Single Shot MultiBox Detector Implementation in Pytorch
 
+## What is in this fork
+
+This fork adds the capability to trace the execution of the python example script, so that a TorchScript file is dumped and can be run on other hardware plaforms that has LibTorch installed.
+
+```basn
+wget -P models https://storage.googleapis.com/models-hao/mobilenet-v1-ssd-mp-0_675.pth
+wget -P models https://storage.googleapis.com/models-hao/voc-model-labels.txt
+python run_ssd_example.py mb1-ssd models/mobilenet-v1-ssd-mp-0_675.pth models/voc-model-labels.txt
+```
+After the successful execution, the TorchScript file, mobilenet-v1-ssd-mp-0_675.pt, will be in the current path.
+
 This repo implements [SSD (Single Shot MultiBox Detector)](https://arxiv.org/abs/1512.02325). The implementation is heavily influenced by the projects [ssd.pytorch](https://github.com/amdegroot/ssd.pytorch) and [Detectron](https://github.com/facebookresearch/Detectron).
 The design goal is modularity and extensibility.
 
@@ -23,7 +34,7 @@ It also has out-of-box support for retraining on Google Open Images dataset.
 ```bash
 wget -P models https://storage.googleapis.com/models-hao/mobilenet-v1-ssd-mp-0_675.pth
 wget -P models https://storage.googleapis.com/models-hao/voc-model-labels.txt
-python run_ssd_live_demo.py mb1-ssd models/mobilenet-v1-ssd-mp-0_675.pth models/voc-model-labels.txt 
+python run_ssd_live_demo.py mb1-ssd models/mobilenet-v1-ssd-mp-0_675.pth models/voc-model-labels.txt
 ```
 ### Run the live demo in Caffe2
 
